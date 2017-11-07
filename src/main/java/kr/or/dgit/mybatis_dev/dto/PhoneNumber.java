@@ -10,7 +10,6 @@ public class PhoneNumber {
 	}
 
 	public PhoneNumber(String countryCode, String stateCode, String number) {
-		super();
 		this.countryCode = countryCode;
 		this.stateCode = stateCode;
 		this.number = number;
@@ -21,14 +20,14 @@ public class PhoneNumber {
 			String[] parts=str.split("-");
 			
 			if(parts.length>0) this.countryCode=parts[0];
-			if(parts.length>0) this.stateCode=parts[0];
-			if(parts.length>0) this.number=parts[0];
+			if(parts.length>1) this.stateCode=parts[1];
+			if(parts.length>2) this.number=parts[2];
 		}
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%s - %s - %s]", countryCode, stateCode, number);
+		return String.format("%s - %s - %s", countryCode, stateCode, number);
 	}
 
 	public String getCountryCode() {
@@ -54,5 +53,6 @@ public class PhoneNumber {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
 	
 }

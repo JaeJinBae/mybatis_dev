@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_dev.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -10,7 +11,7 @@ import kr.or.dgit.mybatis_dev.dto.Student;
 
 public class StudentDaoImpl implements StudentDao {
 	private SqlSession sqlSession;
-	
+	private String namespace="kr.or.dgit.mybatis_dev.dao.StudentDao";
 	private static final Log log=LogFactory.getLog(StudentDaoImpl.class);
 	
 	public StudentDaoImpl(SqlSession sqlSession) {
@@ -18,15 +19,99 @@ public class StudentDaoImpl implements StudentDao {
 	}
 
 	@Override
-	public Student selectStudentByNo(Student student) {
-		log.debug("selectStudentByNo()");
-		return sqlSession.getMapper(StudentDao.class).selectStudentByNo(student);
+	public Student selectStudentByNoWithAPI(Student student) {
+		log.debug("selectStudentByNoWithAPI()");
+		return sqlSession.selectOne(namespace+".selectOne", student);
 	}
 
 	@Override
-	public List<Student> selectStudentByAll() {
-		log.debug("selectStudentByAll()");
-		return sqlSession.getMapper(StudentDao.class).selectStudentByAll();
+	public List<Student> selectStudentByAllWithAPI() {
+		log.debug("selectStudentByAllWithAPI()");
+		return sqlSession.selectList(namespace+".selectList");
+	}
+
+	@Override
+	public int insertStudentWithAPI(Student student) {
+		log.debug("insertStudentWithAPI()");
+		return sqlSession.insert(namespace+".insertStudentWithAPI", student);
+	}
+
+	@Override
+	public int insertStudentAutoInc(Student student) {
+		log.debug("insertTudentAutoInc()");
+		return sqlSession.getMapper(StudentDao.class).insertStudentAutoInc(student);
+	}
+
+	@Override
+	public int updateStudentWidthAPI(Student student) {
+		log.debug("updateStudentWithAPI()");
+		return sqlSession.update(namespace+".updateStudentWithAPI", student);
+	}
+
+	@Override
+	public int deleteStudentWithAPI(int id) {
+		log.debug("deleteStudentWithAPI()");
+		return sqlSession.update(namespace+".deleteStudentWithAPI", id);
+	}
+
+	@Override
+	public List<Student> selectStudentByAllForResultMap() {
+		log.debug("selectStudentByAllForResultMap()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByAllForResultMap();
+	}
+
+	@Override
+	public List<Student> selectStudentByAllForResultMapWithAPI() {
+		log.debug("selectStudentByAllForResultMapWithAPI()");
+		return sqlSession.selectList(namespace+".selectStudentByAllForResultMapWithAPI");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectStudentByAllForHashMap() {
+		log.debug("selectStudentByAllForHashMap()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByAllForHashMap();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectStudentByAllForHashMapWithAPI() {
+		log.debug("selectStudentByAllForHashMapWithAPI()");
+		return sqlSession.selectList(namespace+".selectStudentByAllForHashMapWithAPI");
+	}
+
+	@Override
+	public Student selectStudentByNoForResultMapExtends(Student student) {
+		log.debug("selectStudentByNoForResultMapExtends()");
+		return sqlSession.selectOne(namespace+".selectStudentByNoForResultMapExtends", student);
+	}
+
+	@Override
+	public Student selectStudentbyNoForResultMapExtendsWithAPI(Student student) {
+		log.debug("selectStudentbyNoForResultMapExtendsWithAPI()");
+		return sqlSession.selectOne(namespace+".selectStudentbyNoForResultMapExtendsWithAPI", student);
+	}
+
+	@Override
+	public Student selectStudentByNoAssociation(Student student) {
+		log.debug("selectStudentByNoAssociation()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByNoAssociation(student);
+	}
+
+	@Override
+	public Student selectStudentByNoAssociationWithAPI(Student student) {
+		log.debug("selectStudentByNoAssociationWithAPI()");
+		return sqlSession.selectOne(namespace+".selectStudentByNoAssociationWithAPI", student);
+	}
+
+	@Override
+	public int insertEnumStudent(Student student) {
+		log.debug("insertEnumStudent()");
+		return sqlSession.getMapper(StudentDao.class).insertEnumStudent(student);
+	}
+
+	@Override
+	public int insertEnumStudentWithAPI(Student student) {
+		log.debug("insertEnumStudentWithAPI()");
+		return sqlSession.insert(namespace+".insertEnumStudentWithAPI", student);
 	}
 
 }
