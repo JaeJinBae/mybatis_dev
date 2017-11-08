@@ -153,4 +153,24 @@ public class StudentService {
 		return res;
 	}
 	
+	public Student findAllStudentByParam(String name, String email) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.getSqlSessionFactory().openSession();){
+			StudentDao dao=new StudentDaoImpl(sqlSession);
+			return dao.selectAllStudentByParam(name, email);
+		}
+	}
+	
+	public Student findAllStudentByStudent(Student student) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.getSqlSessionFactory().openSession();){
+			StudentDao dao=new StudentDaoImpl(sqlSession);
+			return dao.selectAllStudentByStudent(student);
+		}
+	}
+	
+	public Student findAllStudentByMap(Map<String, String> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.getSqlSessionFactory().openSession();){
+			StudentDao dao=new StudentDaoImpl(sqlSession);
+			return dao.selectAllStudentByMap(map);
+		}
+	}
 }

@@ -114,4 +114,22 @@ public class StudentDaoImpl implements StudentDao {
 		return sqlSession.insert(namespace+".insertEnumStudentWithAPI", student);
 	}
 
+	@Override
+	public Student selectAllStudentByParam(String name, String email) {
+		log.debug("selectAllStudenByParam()");
+		return sqlSession.getMapper(StudentDao.class).selectAllStudentByParam(name, email);
+	}
+
+	@Override
+	public Student selectAllStudentByStudent(Student student) {
+		log.debug("selectAllStudenByStudent()");
+		return sqlSession.selectOne(namespace+".selectAllStudentByStudent", student);
+	}
+
+	@Override
+	public Student selectAllStudentByMap(Map<String, String> map) {
+		log.debug("selectAllStudenByMap()");
+		return sqlSession.selectOne(namespace+".selectAllStudentByMap", map);
+	}
+
 }
