@@ -173,4 +173,11 @@ public class StudentService {
 			return dao.selectAllStudentByMap(map);
 		}
 	}
+	
+	public Map<Integer, String> findStudentForMap(){
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.getSqlSessionFactory().openSession();){
+			StudentDao dao=new StudentDaoImpl(sqlSession);
+			return dao.selectStudentForMap();
+		}
+	}
 }

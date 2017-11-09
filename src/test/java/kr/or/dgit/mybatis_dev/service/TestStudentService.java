@@ -1,11 +1,8 @@
 package kr.or.dgit.mybatis_dev.service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -14,8 +11,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import kr.or.dgit.mybatis_dev.dto.Gender;
-import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev.dto.Student;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -157,7 +152,7 @@ public class TestStudentService {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void testAFindAllStudentByParam() {
 		Student student = studentService.findAllStudentByParam("Timothy", "timothy@gmail.com");
 		Assert.assertNotNull(student);
@@ -179,5 +174,15 @@ public class TestStudentService {
 		maps.put("email", "Timothy@gmail.com");
 		Student student = studentService.findAllStudentByMap(maps);
 		Assert.assertNotNull(student);
+	}*/
+	
+	@Test
+	public void tesetFindStudentForMap() {
+		Map<Integer, String> map=studentService.findStudentForMap();
+		Assert.assertNotNull(map);
+		
+		for(Entry<Integer, String> entry:map.entrySet()) {
+			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+		}
 	}
 }
