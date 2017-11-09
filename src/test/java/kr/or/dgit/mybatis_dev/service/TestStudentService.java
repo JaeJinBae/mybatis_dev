@@ -1,8 +1,7 @@
 package kr.or.dgit.mybatis_dev.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -11,6 +10,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev.dto.Student;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -174,7 +174,7 @@ public class TestStudentService {
 		maps.put("email", "Timothy@gmail.com");
 		Student student = studentService.findAllStudentByMap(maps);
 		Assert.assertNotNull(student);
-	}*/
+	}
 	
 	@Test
 	public void tesetFindStudentForMap() {
@@ -184,5 +184,22 @@ public class TestStudentService {
 		for(Entry<Integer, String> entry:map.entrySet()) {
 			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
 		}
+	}*/
+	
+	@Test
+	public void testUpdateSetStudent() {
+		Student student=new Student();
+		student.setStudId(1);
+		student.setPhone(new PhoneNumber("987-654-321"));
+		student.setDob(new Date());
+		
+		int result=studentService.updateSetStudent(student);
+		Assert.assertSame(1, result);
+		
+		student.setPhone(new PhoneNumber("123-123-123"));
+		student.setDob(new GregorianCalendar(1988,04,25).getTime());
+		
+		result=studentService.updateSetStudent(student);
+		Assert.assertSame(1, result);
 	}
 }

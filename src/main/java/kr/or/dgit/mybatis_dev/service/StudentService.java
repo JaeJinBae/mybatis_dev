@@ -180,4 +180,20 @@ public class StudentService {
 			return dao.selectStudentForMap();
 		}
 	}
+	
+	public int updateSetStudent(Student student) {
+		SqlSession sqlSession=MyBatisSqlSessionFactory.getSqlSessionFactory().openSession();
+		try {
+			StudentDao dao=new StudentDaoImpl(sqlSession);
+			int res=dao.updateSetStudent(student);
+			sqlSession.commit();
+			return res;
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		}finally {
+			sqlSession.close();
+		}
+	}
 }

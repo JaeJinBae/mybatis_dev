@@ -36,4 +36,7 @@ public interface StudentDao {
 	
 	//resultSet 처리방식의 재정의
 	Map<Integer, String> selectStudentForMap();
+	
+	//set조건
+	int updateSetStudent(Student student);
 }

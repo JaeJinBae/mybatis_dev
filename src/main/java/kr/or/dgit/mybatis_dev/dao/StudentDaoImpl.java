@@ -150,4 +150,10 @@ public class StudentDaoImpl implements StudentDao {
 		return map;
 	}
 
+	@Override
+	public int updateSetStudent(Student student) {
+		log.debug("updateSetStudent()");
+		return sqlSession.update(namespace+".updateSetStudent", student);
+	}
+
 }
